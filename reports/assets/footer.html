@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script>  
+    /*
+    replaces the css classes with the requird content
+    Eg;
+    css class -"page" will be replaced by current pagenumber
+    css class -"year" will be replaced by the current year
+    */
+    function subst() {
+      var cssVaraiables = {};
+      var queryStringsFromUrl = document.location.search.substring(1).split('&');
+      for (var queryString in queryStringsFromUrl) {
+        if (queryStringsFromUrl.hasOwnProperty(queryString)) {
+          var tempVar = queryStringsFromUrl[queryString].split('=', 2);
+          cssVaraiables[tempVar[0]] = decodeURI(tempVar[1]);
+        }
+      }
+      var cssSelectorClasses = ['page', 'frompage', 'topage', 'webpage', 'section', 'subsection', 'date', 'isodate', 'time', 'title', 'doctitle', 'sitepage', 'sitepages', 'year'];
+      for (var cssClass in cssSelectorClasses) {
+        if (cssSelectorClasses.hasOwnProperty(cssClass)) {
+          var element = document.getElementsByClassName(cssSelectorClasses[cssClass]);
+          for (var j = 0; j < element.length; ++j) {
+            element[j].textContent = cssVaraiables[cssSelectorClasses[cssClass]];
+            if (cssSelectorClasses[cssClass] === 'year') {
+              element[j].textContent = new Date().getFullYear();
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      border: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .footer-table {
+      width: 100%;
+      margin: 5px 0px 10px
+    }
+
+    .copyright {
+      text-align: center;
+      color: grey;
+      font-size: 10px;
+    }
+
+    .footer-number {
+      text-align: right;
+      font-size: 11px;
+    }
+  </style>
+</head>
+
+<body onload="subst()">
+  <table class="footer-table">
+    <tr>
+      <td class="copyright">
+        <p> Copyright &copy; <span class="year"></span> Managed Security Service Portal. All rights reserved. All other
+          products or services are trademarks of their respective owners.</p>
+      </td>
+      <td class="footer-number">
+        Page - <span class="page"></span>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+{{> sub-header title="SLA summary" }}
+<table class="table">
+    <thead class="thead-default">
+        <tr>
+            <th class="left-pading">Priority</th>
+            <th class="text-center">Open outside SLA</th>
+            <th class="text-center">Closed outside SLA</th>
+            <th class="text-center">Closed within SLA</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each slaTotals}}
+        <tr>
+            <td class="text-severity-{{toLowerCase this.severityName}}">{{this.severityName}}</td>
+            <td class="text-center contains-report-summary">{{#if this.openBreachedReports }}<span class="text-primary">{{this.openBreached}}</span>{{else}}{{this.openBreached}}{{/if}}
+                {{#if this.openBreachedReports }}
+                <div class="report-summary">
+                    Broken down into the following report(s):<br>
+                    {{#each this.openBreachedReports }}
+                    <strong>{{this.count}}</strong> from <a target="_blank" href="/admin/vm/vulnerabilities?organization={{../../this.organisationId}}&report={{@key}}">{{this.name}}</a><br>
+                    {{/each}}
+
+                </div>
+                {{/if}}
+            </td>
+            <td class="text-center contains-report-summary">{{#if this.closedBreachedReports }}<span class="text-primary">{{this.closedBreached}}</span>{{else}}{{this.closedBreached}}{{/if}}
+                {{#if this.closedBreachedReports }}
+                <div class="report-summary">
+                    Broken down into the following report(s):<br>
+                    {{#each this.closedBreachedReports }}
+                    <strong>{{this.count}}</strong> from <a target="_blank" href="/admin/vm/vulnerabilities?organization={{../../this.organisationId}}&report={{@key}}">{{this.name}}</a><br>
+                    {{/each}}
+
+                </div>
+                {{/if}}
+            </td>
+            <td class="text-center contains-report-summary">{{#if this.closedNotBreachedReports }}<span class="text-primary">{{this.closedNotBreached}}</span>{{else}}{{this.closedNotBreached}}{{/if}}
+                {{#if this.closedNotBreachedReports }}
+                <div class="report-summary">
+                    Broken down into the following report(s):<br>
+                    {{#each this.closedNotBreachedReports }}
+                    <strong>{{this.count}}</strong> from <a target="_blank" href="/admin/vm/vulnerabilities?organization={{../../this.organisationId}}&report={{@key}}">{{this.name}}</a><br>
+                    {{/each}}
+
+                </div>
+                {{/if}}
+            </td>
+        </tr>
+        {{/each}}
+        <tr>
+            <td><strong>TOTAL</strong> ({{this.total_vulnerabilities}} vul.)</td>
+            <td class="text-center"><strong>{{this.open_after_sla}}</strong> ({{this.open_after_sla_percentage}}%)</td>
+            <td class="text-center"><strong>{{this.closed_after_sla}}</strong> ({{this.closed_after_sla_percentage}}%)</td>
+            <td class="text-center"><strong>{{this.closed_before_sla}}</strong>
+                ({{this.closed_before_sla_percentage}}%)</td>
+        </tr>
+    </tbody>
+</table>
+
+
+{{#if this.vulnerabilities }}
+{{> sub-header title="Out-of-SLA vulnerabilities" }}
+<table class="table">
+    <thead class="thead-default">
+        <tr>
+            <th class="left-pading width-ten">Severity</th>
+            <th class="left-pading width-fifty">Vulnerability</th>
+            <th class="left-pading-new width-thirteen">Expires On</th>
+            <th class="width-eight">Closed</th>
+            <th class="width-nineteen">Resolved within SLA</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each this.vulnerabilities as | vulnerability | }}
+        <tr>
+            <td class="width-ten">
+                <span class="severity-box severity-box-{{ toLowerCase vulnerability.severityName }}">
+                    {{ vulnerability.severityName }}
+                </span>
+            </td>
+            <td class="contains-report-summary width-fifty">
+                <span class="report-summary-link"><span class="text-primary">{{ vulnerability.name }}</span>
+                    <div class="report-summary">
+                        Appears in the following report(s):<br>
+                        {{#each vulnerability.reports }}
+                        <a target="_blank" href="/admin/vm/exposure/?organization={{../../this.organisationId}}&report={{@key}}&vulnerability={{vulnerability._id}}">{{this}}</a><br>
+                        {{/each}}
+
+                    </div>
+                </span>
+            </td>
+            <td class="width-thirteen">{{ formatDate vulnerability.sla_expiry_date }}</td>
+            <td class="text-center width-eight">{{#if vulnerability.closed }}Yes{{else}}<span class=text-danger">No</span>{{/if}}</td>
+            <td class="text-center width-nineteen">{{#if vulnerability.slaBreached }}<span class=text-danger">No</span>{{else}}Yes{{/if}}</td>
+        </tr>
+        {{#if vulnerability.note}}
+        <tr>
+            <td colspan="1"></td>
+            <td colspan="5">Note: {{ vulnerability.note }}</td>
+        </tr>
+        {{/if}}
+
+        {{/each}}
+    </tbody>
+</table>
+{{/if}}

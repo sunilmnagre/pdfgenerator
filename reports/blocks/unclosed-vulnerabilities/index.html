@@ -1,0 +1,44 @@
+{{> sub-header title="Vulnerabilities need urgent attention" additionalInfo=(concat '(' this.count ')')}}
+
+{{#if this.vulnerabilities }}
+
+<table class="table">
+    <thead class="thead-default">
+        <tr>
+            <th class="left-pading width-ten">Severity</th>
+            <th class="left-pading width-seventy">Vulnerability</th>
+            <th class="left-pading width-twenty">Reason</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each this.vulnerabilities as | vulnerability | }}
+        <tr>
+            <td class="width-ten">
+                <span class="severity-box severity-box-{{ toLowerCase vulnerability.severityName }}">
+                    {{ vulnerability.severityName }}
+                </span>
+            </td>
+            <td class="contains-report-summary width-seventy">
+                <span class="report-summary-link"><span class="text-primary">{{ vulnerability.name }}</span>
+                    <div class="report-summary">
+                        Appears in the following report(s):<br>
+                        {{#each vulnerability.reports }}
+                        <a target="_blank" href="/admin/vm/exposure/?organization={{../../this.organisationId}}&report={{@key}}&vulnerability={{vulnerability._id}}">{{this}}</a><br>
+                        {{/each}}
+
+                    </div>
+                </span>
+            </td>
+            <td class="width-twenty">
+                {{#if this.why }}
+                {{ this.why }}
+                {{/if}}
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{else}}
+<p class="text-muted"><em>No vulnerabilities</em></p>
+{{/if}}

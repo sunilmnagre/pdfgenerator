@@ -1,0 +1,41 @@
+{{> sub-header title="Vulnerability list"}}
+<table class="table">
+    <thead class="thead-default">
+        <tr>
+            <th class="left-pading">Severity</th>
+            <th class="left-pading">Target</th>
+            <th class="left-pading-new">Vulnerability</th>
+            <th class="left-pading-new">Port/Protocol</th>
+            <th class="left-pading"><img src="assets/images/repeat.png" class="repeat-image"></th>
+        </tr>
+    </thead>
+    <tbody class="text-left">
+        {{#each this.vulnerabilities as | vulnerability | }}
+        <tr>
+            <td>
+                <span class="severity-box severity-box-{{ vulnerability.severity }}">
+                    {{ vulnerability.severity }}
+                </span>
+            </td>
+            <td>{{ vulnerability.target }}</td>
+            <td class="contains-report-summary">
+                <span class="report-summary-link"><span class="text-primary">{{ vulnerability.name }}</span>
+                    <div class="report-summary">
+                        Appears in the following report(s):<br>
+                        {{#each vulnerability.reports }}
+                        <a target="_blank" href="/admin/vm/exposure/?organization={{../../this.organisationId}}&report={{@key}}&vulnerability={{vulnerability._id}}">{{this}}</a><br>
+                        {{/each}}
+                    </div>
+                </span>
+                {{#if vulnerability.action_status }}
+                <span class="actions-box actions-box-{{ vulnerability.action_status_flag }}">
+                    {{vulnerability.action_status}}
+                </span>
+                {{/if}}
+            </td>
+            <td>{{ vulnerability.port }}</td>
+            <td class="text-center">{{ vulnerability.count }}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

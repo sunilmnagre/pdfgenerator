@@ -1,0 +1,444 @@
+$ericsson-blue: #193066;
+
+body {
+    -webkit-print-color-adjust: exact;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@media print {
+    html {
+        zoom: 0.5;
+    }
+}
+
+.row {
+    &.header {
+        margin-bottom: 5px;
+    }
+}
+
+.admin__exposure__pre_description {
+    color: #555;
+    word-wrap: initial;
+    padding: 0px 0px;
+    position: relative;
+    font-size: 14px;
+    border: 0px;
+    background-color: #fff;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.block {
+    margin-bottom: 15px;
+
+    &.block-summary-vulnerability-severity {
+        .vulnerability-count-number {
+            font-size: 3em;
+            color: #555;
+            padding-top: 5px;
+            padding-bottom: 0px;
+        }
+
+        .vulnerability-count-severity-name {
+            text-transform: uppercase;
+            padding-top: 0px;
+        }
+        
+        div.contains-report-summary {
+            div.report-summary {
+                min-width: 300px;
+                top: 100px;
+                text-align: left;
+            }
+        }
+    }
+
+    &.block-header {
+        .project-title {
+            line-height: 42px;
+        }
+    }
+
+    &.block-summary-vulnerability-types {
+        table.table {
+            th {
+                border-top: none;
+            }
+
+            tbody td, thead tr {
+                text-align: center;
+            }
+        }
+    }
+
+    &.block-unclosed-vulnerabilities {
+
+        & .panel-heading {
+            background: #7e7c88;
+            color: white;
+            margin: 0;
+            padding: 10px;
+            font-weight: bold;
+        }
+    }
+
+    &.block-table-vulnerabilities-with-details, &.block-sla-breached-vulnerabilities-with-notes{
+        .notes{
+            padding: 0px 11px 3px 0px;
+        }
+        .content-heading{
+            font-weight: bold;
+            padding: 6px 0px 0px 2px;
+            font-size: 12px;
+        
+            &.content-heading-port{
+               display: inline-block;
+            }
+        }
+        .content-body{
+            padding: 0px 0px 6px 20px;
+            font-size: 12px;
+            page-break-inside: avoid !important;
+            &.content-body-port{
+                display: inline-block;
+             }
+        }
+
+        table.table {
+            & .active{
+                background-color: #c7cacc;
+            }
+        }
+
+        table.thead-default th {
+            color: #fff;
+            background-color: #757879;
+        }
+
+        .content-details{
+            background: #fafbfb;
+        }
+        .cve-numbers{
+            padding: 2px 7px;
+            border-radius: 2px;
+            font-size: 11px;
+            margin-right: 5px;
+            background-color: #e5e4f7;
+        }
+
+        .thead-default th {
+            color: #fff;
+            background-color: #5c6163;
+        }
+
+        &.block-summary-vulnerability-repeated {
+          th, td {
+              text-align: center;
+          }
+      }
+
+    &.block-summary-vulnerability-repeated {
+        th, td {
+            text-align: center;
+        }
+    }
+
+    &.block-sla-breached-vulnerabilities-with-notes{
+      .notes-body{
+          padding: 0px 0px 0px 10px;
+          font-size: 12px;
+      }
+    }
+
+    &.block-summary-vulnerability-repeated {
+        th, td {
+            text-align: center;
+        }
+    }
+  }
+  
+  .contains-report-summary {
+      position: relative;
+     
+      div.report-summary {
+          position: absolute;
+          top: 30px;
+          left: 0;
+          display: none;
+          background-color: #FFFFFF;
+          padding: 20px;
+          border: 1px solid #EEE;
+          z-index: 100;
+      }
+      
+      &:hover div.report-summary {
+          display: block;
+      }
+  }
+}
+
+
+    .text-severity-critical {
+        color: #e84949;
+    }
+    .text-severity-high {
+        color: #f79e4d;
+    }
+    .text-severity-medium {
+        color: #fabb00;
+    }
+    .text-severity-low {
+        color: #66cbe2;
+    }
+    .text-severity-info {
+        color: #99a9bc;
+    }
+    .table-heading{
+        padding: 3px;
+    }
+
+    h2.sub-header {
+        font-size: 1.2rem;
+        border-bottom: 2px solid #EEE;
+        padding-bottom: 6px;
+        margin-bottom: 0px;
+        font-weight: 700;
+
+        &.sub-header-h3 {
+            color: #999;
+            border-bottom: 1px solid #EEE;
+            font-size: 1.1rem;
+        }
+
+        .small {
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+    }
+
+    .text-ericsson-blue {
+        color: $ericsson-blue;
+    }
+
+    .severity-box{
+        width: 80px;
+        height: 23px;
+        padding: 4px 0;
+        border-radius: 2px;
+        color: #fff;
+        display: inline-block;
+        font-size: 10px;
+        margin-right: 5px;
+        line-height: 17px;
+        text-align: center;
+        text-transform: uppercase;
+        
+        &.severity-box-critical {
+            background-color: #e84949;
+        }
+        &.severity-box-high {
+            background-color: #f79e4d;
+        }
+        &.severity-box-medium {
+            background-color: #fabb00;
+        }
+        &.severity-box-low {
+            background-color: #66cbe2;
+        }
+        &.severity-box-info {
+            background-color: #99a9bc;
+        }
+    }
+
+.actions-box{
+    width: 80px;
+    height: 23px;
+    padding: 4px 0;
+    border-radius: 2px;
+    color: #fff;
+    display: inline-block;
+    font-size: 10px;
+    margin-right: 5px;
+    margin-left: 15px;
+    line-height: 17px;
+    font-weight: bold;
+    text-align: center;
+   text-transform: capitalize;
+
+    &.actions-box-fp {
+        background-color: #FAB978;
+    }
+    &.actions-box-se {
+        background-color: #A5BFE2;
+    }
+    &.actions-box-pcd {
+        background-color: #00A5B5;
+    }
+}
+
+.left-pading{
+        padding-left: 10px !important;
+    }
+
+    .left-pading-new{
+        padding-left: 8px !important;
+    }
+
+    .repeat-image{
+        height: 20px !important;
+        width: 20px !important;
+    }
+
+    .repeat-vuln{
+        width: 20% !important;
+        padding-bottom: 15px !important;
+    }
+
+    .repeat-vuln-width{
+        width: 20% !important;       
+    }
+
+    .repeat-vuln-width-new{
+        width: 40% !important;       
+    }
+
+    .vuln-detail{
+        color:#656565 !important;       
+        padding-left: 8px !important;
+    }
+
+    .vuln-padding{
+        color:#656565 !important;       
+        padding-left: 12px !important;
+    }
+
+    .width-eight{      
+        width: 8% !important;       
+    }
+
+    .width-ten{      
+        width: 10% !important;       
+    }
+
+    .width-eleven{      
+        width: 11% !important;       
+    }
+
+    .width-thirteen{      
+        width: 13% !important;       
+    }
+
+    .width-fifteen{      
+        width: 15% !important;       
+    }
+
+    .width-nineteen{      
+        width: 19% !important;       
+    }
+
+    .width-twenty{      
+        width: 20% !important;       
+    }
+
+    .width-forty{      
+        width: 40% !important;       
+    }
+
+    .width-fifty{      
+        width: 50% !important;       
+    }
+    
+    .width-fiftyfour{      
+        width: 54% !important;       
+    }
+
+    .width-seventy{      
+        width: 70% !important;       
+    }
+
+    .vuln-type-color{      
+        border-top: 1px solid #a9a9a9 !important;      
+    }
+    
+    .plugin-output{
+        white-space: pre !important;
+        word-wrap: break-word !important;
+        max-width:850px !important;
+    }
+
+    .sub-text{
+        color: #808080 !important;
+        font-size: 11px !important;
+        font-family: Arial, Helvetica, sans-serif !important;
+        font-style: italic !important;
+        padding: 0px !important;
+        margin: 0px !important;
+        
+    }
+
+    .text-align-left{
+        text-align: left;
+    }
+   
+    .table-margin{
+        margin: 0px;
+    }
+    .no-border-bottom{
+        .normal-text{
+            font-weight: normal;
+        }
+        th{
+            border-bottom: 0px !important;
+        }
+
+    }
+    .table {
+
+        thead th {
+            box-shadow: inset 0 0 0 1000px #eceeef !important;
+            background-color: #eceeef !important;
+            padding: 2px;
+        }
+        .right-border {
+            border-right: 1px solid #eceeef;
+        }
+        .left-border {
+            border-left: 1px solid #eceeef;
+        }
+
+        &.table-no-top-border {
+            th {
+                border: 1px;
+                padding: 2px;
+                text-align: center;
+            }
+        }
+        tbody ,tfoot{ 
+            padding: 0px;
+            margin: 0px;
+            tr{
+            padding: 0px;
+            td{
+                padding: 8px;               
+            }
+        }
+    }
+    }
+    .padding-top{
+        padding-top: 15px !important;
+    }
+    .dark-grey-border-right{
+        border-right: 1px solid #e6e6e6;
+    }
+    .dark-grey-border-left{
+        border-left: 1px solid #e6e6e6;
+    }
+    .dark-grey-border-top{
+        border-top: 1px solid #e6e6e6 !important;
+    }
+    .dark-grey-border-bottom{
+        border-bottom: 1px solid #e6e6e6;
+    }
+    .dark-grey-border-none{
+        border-bottom: 0px !important;
+    }

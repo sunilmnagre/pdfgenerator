@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col">
+        <span class="text-muted">Report generated at: </span> {{this.reportDate}} (UTC)
+    </div>
+    <div class="col text-right">
+        <span class="text-muted">Report(s) Included:</span><br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col text-right">
+      {{#each this.reports}}
+        {{this.report_name}}<br>
+  {{/each}}
+
+    </div>
+  </div>

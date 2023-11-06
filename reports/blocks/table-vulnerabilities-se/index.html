@@ -1,0 +1,40 @@
+{{#if this.vulnerabilities}}
+    {{> sub-header title="Security exception vulnerabilities"}}
+
+    <table class="table">
+        <thead class="thead-default">
+            <tr>
+                <th>Severity</th>
+                <th>Target</th>
+                <th>Vulnerability</th>
+                <th>Port/Proto</th>
+                <th>Expires On</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.vulnerabilities as | vulnerability | }}
+            <tr>
+                <td>
+                    <span class="severity-box severity-box-{{ vulnerability.severity }}">
+                        {{ vulnerability.severity }}
+                    </span>
+                </td>
+                <td>{{ vulnerability.target }}</td>
+                <td class="contains-report-summary">
+                    <span class="report-summary-link"><span class="text-primary">{{ vulnerability.name }}</span>
+                        <div class="report-summary">
+                            Appears in the following report(s):<br>
+                        {{#each vulnerability.reports }}
+                        <a target="_blank" href="/admin/vm/exposure/?organization={{../../this.organisationId}}&report={{@key}}&vulnerability={{vulnerability._id}}">{{this}}</a><br>
+                        {{/each}}
+
+                        </div>
+                    </span>
+                </td>
+                <td>{{ vulnerability.port }}</td>
+                <td>{{ formatDate vulnerability.security_exception.end_date }}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{/if}}

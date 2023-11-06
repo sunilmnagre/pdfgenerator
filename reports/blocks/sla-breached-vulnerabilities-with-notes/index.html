@@ -1,0 +1,47 @@
+{{> sub-header title="SLA Breached Vulnerabilities with clarification"}}
+<table width="100%">
+  <thead class="thead-inverse">
+    <tr>
+      <th class="table-heading"><i>Notes added by: </i><span>{{ this.userInfo.first_name }} {{ this.userInfo.last_name }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <table class="table">
+          <thead class="thead-default">
+            <tr>
+              <th>Severity</th>
+              <th>Target</th>
+              <th>Vulnerability</th>
+              <th>Repeated</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each this.vulnerabilities as | vulnerability | }}
+                 <tr class="active">
+                  <td>
+                    <span class="severity-box severity-box-{{ vulnerability.severity }}">
+                      {{ vulnerability.severity }}
+                    </span>
+                  </td>
+                  <td>{{ vulnerability.target }}</td>
+                  <td>{{ vulnerability.name }}</td>
+                  <td align="center">{{ vulnerability.count }}</td>
+                </tr>
+                <tr>
+                  <td colspan="5" class="content-details">
+                    <div>
+                        <div class="notes">
+                          <div class="notes-body"><i>Note:</i> {{ vulnerability.user_note }}</div>
+                         </div>
+                    </div>
+                  </td>
+               </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>

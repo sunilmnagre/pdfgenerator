@@ -1,0 +1,57 @@
+{
+  "organization": {
+    "fetchToFailVulnerabilities": "Failed to get vulnerabilities data",
+    "notSubscribed": "This organisation is not subscribed to this service",
+    "failedToGetOrgId": "Failed to get organization Id from request"
+  },
+  "organizationService": {
+    "supportedTypesNotAvailable": "Failed to get supported types"
+  },
+  "scans": {
+    "notAvailable": "Failed to get scans",
+    "deleteSuccess": "Scan successfully deleted",
+    "deleteFailed": "Scan delete failed",
+    "notExist": "Scan does not exist",
+    "launch": "Scan successfully launched",
+    "launchFail": "Scan launch is failed",
+    "ipNotFound": "Target IP not found",
+    "diagnosticScanFailed": "Diagnostic target is outside IPs of original Scan"
+  },
+  "vulnerabilities": {
+    "markActionNotMacth":"The selection criteria for marking the vulnerabilities is not matching with any vulnerabilities",
+    "updateFailed": "Update failed",
+    "notAvailable": "Failed to get vulnerabilities",
+    "resumeSecurityException": "Vulnerability was fired again after proposed end date and therefore SE is no longer valid"
+  },
+  "reports": {
+    "notAvailable": "Failed to get reports"
+  },
+  "tenable": {
+    "scansError": "Fail to get Scan result from tenable",
+    "vulnerabilities": "Failed to get vulnerabilities",
+    "invalidLogin": "Invalid login credentials",
+    "updateFail": "Update failed with error",
+    "failed": "Communication error between MSS and Tenable",
+    "uploadFailed": "Error uploading file in Tenable",
+    "fileProcessFailed": "Error converting file"
+  },
+  "charts": {
+    "failedToGetData": "Failed to get chart data.!"
+  },
+  "generic": {
+    "createSuccess": "Successfully created",
+    "updateSuccess": "Successfully updated",
+    "deleteSuccess": "Successfully deleted",
+    "deleteFailed": "Delete failed",
+    "updateFail": "Update failed with error",
+    "failed": "Failed to insert record",
+    "exist": "Record already exist",
+    "notExist": "Record does not exist"
+  },
+  "csv": {
+    "fieldsValidation": "Please select the fields to include CSV",
+    "failToFetchCSVheaders": "Failed to serve the CSV Headers",
+    "invalidCSV": "Invalid csv file",
+    "failed": "Failed to create the CSV"
+  }
+}

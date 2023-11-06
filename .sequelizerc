@@ -1,0 +1,5 @@
+var config = require('config');
+
+config.database.config = __filename;
+
+module.exports = config.database;

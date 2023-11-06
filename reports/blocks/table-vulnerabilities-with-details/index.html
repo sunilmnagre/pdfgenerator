@@ -1,0 +1,123 @@
+{{> sub-header title="Vulnerabilities details"}} {{#each this}}
+<table width="100%">
+  <!-- Content from here are moved inside tbody due to wkhtmltopdf work -->
+  <thead class="thead-inverse">
+    <th class="table-heading">{{this.report_name}}</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <table class="table table-margin">
+            <thead>
+                <tr>
+                  <th class="text-left vuln-detail width-eleven">Priority</th>
+                  <th class="text-left vuln-padding width-ten">Plugin</th>
+                  <th class="text-left vuln-detail width-fifteen">Target</th>
+                  <th class="text-left vuln-detail width-fiftyfour">Vulnerability</th>
+                  <th class="text-center vuln-detail width-ten">Repeated</th>
+                </tr>
+            </thead>
+       </table>
+
+            {{#each this.vulnerabilities as | vulnerability | }}
+            <table class="table table-margin">
+                <tbody>
+                    <tr class="active">
+                        <td class="dark-grey-border-right text-left width-eleven"> <span class="severity-box severity-box-{{ vulnerability.severity }}">
+                              {{ vulnerability.severity }}
+                            </span></td>
+                        <td class="dark-grey-border-right text-left vuln-detail-width-ten">{{ vulnerability.tenable_plugin_id }}</td>
+                        <td class="dark-grey-border-right text-left width-fifteen">{{ vulnerability.target }}</td>
+                        <td class="dark-grey-border-right text-left width-fiftyfour">{{ vulnerability.name }}</td>
+                        <td class="text-center width-ten">{{ vulnerability.count }}</td>
+                    </tr>
+                  </tbody>
+          </table>
+                <div class="content-details admin__exposure__pre_description" > 
+                  {{#if vulnerability.description }}
+                  <h2 class="content-heading">Description</h2>
+                  <div class="content-body">{{ vulnerability.description }}</div>
+                  {{/if}}
+
+                  {{#if vulnerability.solution }}
+                  <h2 class="content-heading">Solution</h2>
+                  <div class="content-body">{{ vulnerability.solution }}</div>
+                  {{/if}}
+
+                  {{#if vulnerability.synopsis }}
+                  <h2 class="content-heading">Synopsis</h2>
+                  <div class="content-body">{{ vulnerability.synopsis }}</div>
+                  {{/if}}
+
+
+                  {{#if vulnerability.risk_factor }}
+                  <h2 class="content-heading">Risk Factor</h2>
+                  <div class="content-body">{{ vulnerability.risk_factor }}</div>
+                  {{/if}}
+
+                  {{#if vulnerability.see_also }}
+                  {{#if vulnerability.see_also.[0] }}
+                  <h2 class="content-heading">See Also</h2>
+                  <div class="content-body">
+                    {{#each vulnerability.see_also as | see | }}
+                    <a class="cve-numbers" target="_blank" href="{{see}}">
+                      {{ see }} </a>
+                    {{/each}}
+                  </div>
+                  {{/if}}
+                  {{/if}}
+
+                  {{#if vulnerability.port }}
+                  <h2 class="content-heading content-heading-port">Port/Protocol</h2>
+                  <div class="content-body content-body-port">{{ vulnerability.port }}</div>
+                  {{/if}}
+
+                  {{#if vulnerability.plugin_output }}
+                  <h2 class="content-heading">Plugin Output</h2>
+                  <div class="content-body plugin_output plugin-output">{{{ vulnerability.plugin_output }}}</div>
+                  {{/if}}
+
+                  {{#if vulnerability.cvss }}
+                  <h2 class="content-heading">CVSS</h2>
+                  <div class="content-body">{{ vulnerability.cvss }}</div>
+                  {{/if}}
+
+                  {{#if vulnerability.cve_numbers }}
+                  {{#if vulnerability.cve_numbers.[0] }}
+                  <h2 class="content-heading">CVE's</h2>
+                  <div class="content-body">
+                    {{#each vulnerability.cve_numbers as | cve | }}
+                    <a class="cve-numbers" target="_blank"
+                      href="http://web.nvd.nist.gov/view/vuln/detail?vulnId={{cve}}">
+                      {{ cve }} </a>
+                    {{/each}}
+                  </div>
+                  {{/if}}
+                  {{/if}}
+
+                  {{#if vulnerability.notes }}
+                  <h2 class="content-heading">Notes</h2>
+                  <div class="content-body">
+                    {{#each vulnerability.notes as | note | }}
+                    <div class="notes">
+
+                      {{#if note.updated_by_user_info}}
+                      <span><i>Updated:</i> {{ note.updated_at }},</span>
+                      <span> by <i>{{note.updated_by_user_info.first_name}}</i></span>
+                      {{else}}
+                      <span><i>Created:</i> {{ note.created_at }},</span>
+                      <span> by <i>{{note.created_by_user_info.first_name}}</i></span>
+                      {{/if}}
+                      <span>- {{ note.note }}</span>
+                    </div>
+                    {{/each}}
+                  </div>
+                  {{/if}}
+                </div>
+            {{/each}}
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div></div>
+{{/each}}

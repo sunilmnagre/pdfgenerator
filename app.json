@@ -1,0 +1,143 @@
+{
+  "apps": [
+    {
+      "name": "VM-BACKEND-API",
+      "script": "app.js",
+      "watch": false,
+      "watch_options": {
+        "usePolling": false
+      },
+      "ignore_watch": [
+        "node_modules",
+        "public",
+        "temp",
+        "reports/assets/css",
+        "reports/downloads"
+      ],
+      "env": {
+        "PORT": "7081",
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+        "TZ": "utc"
+      },
+      "env_production": {
+        "PORT": "7081",
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+        "args": [
+          "--ignore-watch \".git\/ node_modules\""
+        ],
+        "TZ": "utc",
+        "NODE_ENV": "production"
+      },
+      "env_staging": {
+        "PORT": "7081",
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+        "args": [
+          "--ignore-watch \".git\/ node_modules\""
+        ],
+        "TZ": "utc",
+        "NODE_ENV": "staging"
+      },
+      "env_pre-production": {
+        "PORT": "7081",
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+        "args": [
+          "--ignore-watch \".git\/ node_modules\""
+        ],
+        "TZ": "utc",
+        "NODE_ENV": "pre-production"
+      },
+      "env_uat": {
+        "PORT": "7081",
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+        "args": [
+          "--ignore-watch \".git\/ node_modules\""
+        ],
+        "TZ": "utc",
+        "NODE_ENV": "uat"
+      },
+      "env_ci-op-lab": {
+        "PORT": "7081",
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+        "args": [
+          "--ignore-watch \".git\/ node_modules\""
+        ],
+        "TZ": "utc",
+        "NODE_ENV": "ci-op-lab"
+      },
+      "env_mock": {
+        "MOCK": "true"
+      }
+    },
+    {
+      "name": "VM-TENABLE-JOBS",
+      "script": "jobs/index.js",
+      "watch": false,
+      "ignore_watch": [
+        "node_modules",
+        "public",
+        "temp",
+        "reports/assets/css",
+        "reports/downloads"
+      ],
+      "env": {
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+        "TZ": "utc"
+      },
+      "env_production": {
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+        "TZ": "utc",
+        "NODE_ENV": "production"
+      },
+      "env_staging": {
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+        "TZ": "utc",
+        "NODE_ENV": "staging"
+      },
+      "env_uat": {
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+        "TZ": "utc",
+        "NODE_ENV": "uat"
+      }
+    },
+    {
+      "name": "VM-SFTP-JOBS",
+      "script": "sftp-jobs/index.js",
+      "watch": false,
+      "watch_options": {
+        "usePolling": false
+      },
+      "ignore_watch": [
+        "node_modules','temp"
+      ],
+      "max_restarts": 3,
+      "restart_delay": 4000,
+      "env": {
+        "args": [
+          "--ignore-watch \".git\/ node_modules\""
+        ],
+        "TZ": "utc"
+      },
+      "env_production": {
+        "args": [
+          "--ignore-watch \".git\/ node_modules\""
+        ],
+        "TZ": "utc",
+        "NODE_ENV": "production"
+      },
+      "env_uat": {
+        "args": [
+          "--ignore-watch \".git\/ node_modules\""
+        ],
+        "TZ": "utc",
+        "NODE_ENV": "uat"
+      },
+      "env_staging": {
+        "args": [
+          "--ignore-watch \".git\/ node_modules\""
+        ],
+        "TZ": "utc",
+        "NODE_ENV": "staging"
+      }
+    }
+  ]
+}
